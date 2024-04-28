@@ -1,34 +1,44 @@
-const helloWorldRegex = (str) => {};
+const helloWorldRegex = (str) => /hello world/i.test(str); //you can insert exact strings to test for
 
-const hasAVowel = (str) => {};
 
-const hasCatsOrDogs = (str) => {};
+console.log(helloWorldRegex("hello"))
 
-const hasVowelStart = (str) => {};
+const hasAVowel = (str) => /[aeiou]/i.test(str); //or an array of elements to test for
 
-const hasPunctuationEnd = (str) => {};
+console.log(hasAVowel("j"))
 
-const hasNothingOrDigits = (str) => {};
+const hasCatsOrDogs = (str) => /(cats|dogs)/i.test(str); //you can also enter whole words to test for
 
-const hasNoFlippers = (str) => {};
+console.log(hasCatsOrDogs("CATS")) //i makes sure its not case sensitive
 
-const isValidEmail = (str) => {};
+const hasVowelStart = (str) => /^[aeiou]/i.test(str); 
 
-const isValidPhoneNumber = (str) => {};
+const hasPunctuationEnd = (str) => /[.?!]$/.test(str); //make sure to have multiline enabled so it captures the end of sentences on different lines.
 
-const matchAllNumbers = (str) => {};
+const hasNothingOrDigits = (str) => /^\d*$/.test(str);
 
-const matchAllNumbersAsNumbers = (str) => {};
+const hasNoFlippers = (str) => /^[^BCcDEHIKOoXxl]*$/.test(str);
 
-const matchAllWords = (str) => {};
+const isValidEmail = (str) => /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/.test(str);
 
-const replaceAllNumbers = (str) => {};
+const isValidPhoneNumber = (str) => /^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$/.test(str);
 
-const fixFileName = (str) => {};
 
-const nameRedacter = (str) => {};
+const matchAllNumbers = (str) => str.match(/\d+/g) || [];
 
-const camelToSnakeCase = (str) => {};
+const matchAllNumbersAsNumbers = (str) => matchAllNumbers(str).map(Number);
+
+const matchAllWords = (str) => str.match(/[a-zA-Z']+/g) || [];
+
+
+const replaceAllNumbers = (str) => str.replace(/\d+/g, '???');
+
+const fixFileName = (str) => str.replace(/\s+/g, '_');
+
+const nameRedacter = (str) => str.replace(/\b[A-Z]{2,}\b/g, 'REDACTED');
+
+
+const camelToSnakeCase = (str) => str.replace(/[A-Z]/g, (letter) => `_${letter.toLowerCase()}`);
 
 module.exports = {
   helloWorldRegex,
